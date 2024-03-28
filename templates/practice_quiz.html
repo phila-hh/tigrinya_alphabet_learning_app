@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    This HTML document serves as the page for practicing the Tigrinya alphabet quiz in the Tigrinya Alphabet Learning web app.
+    It includes the necessary metadata, links to external stylesheets for styling, and provides functionality to choose characters and submit the quiz.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigrinya Alphabet Practice Quiz</title>
+    <!-- Links to external CSS files for styling -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/landing_page.css') }}?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/practice_quiz.css') }}?{{ cache_id }}">
+</head>
+<body>
+    <header>
+        <!-- Header section with the title of the practice quiz page and a back button -->
+        <h1>Practice Quiz</h1>
+        <a href="{{ url_for('index') }}"><button id="back">Back</button></a>
+        <!-- Description of choosing characters -->
+        <div class="description">
+            <p align="center">Choose characters:</p>
+        </div>
+    </header>
+    <main>
+        <!-- Main content section with boxes for selecting characters -->
+        <div class="boxs-container">
+            <!-- Form for selecting characters -->
+            <form class="boxs-container" id="selectionForm" action="{{ url_for('quiz') }}" method="post">
+                {% for char in tigrinya_characters %}
+                <!-- Quiz box for each character, with hidden input field to store selection status -->
+                <div class="quiz-box" onclick="toggleSelection(this, '{{ char }}')">
+                    <input type="hidden" name="selected_characters" value="0">  <!-- Hidden input field to store selection status -->
+                    <!-- Character display -->
+                    <div class="character" id="{{ char }}">{{ char }}</div>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+        <!-- Buttons container -->
+        <div class="buttons-container">
+            <!-- Button to select random characters -->
+            <button class="center-btn" id="Random" onclick="clearSelectionAndSubmit()">Random</button>
+        </div>
+        <div class="buttons-container">
+            <!-- Button to submit selected characters -->
+            <button type="button" onclick="submitForm()" class="center-btn" id="Done">Done</button>
+        </div>
+    </main>
+    <!-- JavaScript section for toggling selection and submitting form -->
+    <script src="{{ url_for('static', filename='scripts/selection.js') }}?{{ cache_id }}"></script>
+</body>
+</html>

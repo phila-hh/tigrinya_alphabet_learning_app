@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    This HTML document serves as the page for learning the Tigrinya alphabet sounds in the Tigrinya Alphabet Learning web app.
+    It includes the necessary metadata, links to external stylesheets for styling, and provides functionality to listen to pronunciation.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn</title>
+    <!-- Links to external CSS files for styling -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/landing_page.css') }}?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/learn.css') }}?{{ cache_id }}">
+</head>
+<body>
+    <header>
+        <!-- Header section with a back button -->
+        <h1></h1>
+        <a href="{{ url_for('learn_tigrinya') }}"><button id="back">Back</button></a>
+        <!-- Description of listening to pronunciation -->
+        <div class="description">
+            <p align="center">Click on the characters to listen the pronunctiation:</p>
+        </div>
+    </header>
+    <main>
+        <!-- Main content section with boxes for listening to pronunciation -->
+        <div class="boxs-container">
+            <!-- Loop through characters -->
+            {% for character, eng in zipped %}
+            <!-- Character box with onclick function to play audio -->
+            <div class="quiz-box" onclick="playAudio('{{ url_for('static', filename='sounds/' + eng + '.wav') }}')">
+                <!-- Character display -->
+                <div class="character">{{ character }}</div>
+                <!-- Answer field with the English representation -->
+                <div class="answer-field">{{ eng }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Buttons container -->
+        <div class="buttons-container">
+            <!-- Button to navigate back -->
+            <a href="{{ url_for('learn_tigrinya') }}"><button class="center-btn" id="Done">Done</button></a>
+        </div>
+    </main>
+    <!-- JavaScript section for playing audio -->
+    <script src="{{ url_for('static', filename='scripts/selection.js') }}?{{ cache_id }}"></script>
+</body>
+</html>

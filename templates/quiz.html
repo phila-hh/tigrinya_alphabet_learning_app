@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    This HTML document serves as the page for the quiz in the Tigrinya Alphabet Learning web app.
+    It includes the necessary metadata, links to external stylesheets for styling, and provides functionality to answer quiz questions.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <!-- Links to external CSS files for styling -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/landing_page.css') }}?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/quiz.css') }}?{{ cache_id }}">
+</head>
+<body>
+    <header>
+        <!-- Header section with a back button and description -->
+        <h1></h1>
+        <a href="{{ url_for('practice_quiz') }}"><button id="back">Back</button></a>
+        <div class="description">
+            <p align="center">Answer with the correct English pronunciation for the below characters:</p>
+        </div>
+    </header>
+    <main>
+        <!-- Main content section with input fields for answering questions -->
+        <div class="boxs-container">
+            <!-- Loop through characters and create quiz boxes -->
+            {% for character, eng in zipped %}
+            <div class="quiz-box">
+                <div class="character">{{ character }}</div>
+                <input type="text" class="answer-field" data-correct="{{ eng }}">
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Buttons container with a button to check answers -->
+        <div class="buttons-container">
+            <button class="center-btn" id="Done" onclick="checkAnswers()">Done</button>
+        </div>
+    </main>
+    <!-- JavaScript section for toggling selection and submitting form -->
+    <script src="{{ url_for('static', filename='scripts/quiz.js') }}?{{ cache_id }}"></script>
+</body>
+</html>

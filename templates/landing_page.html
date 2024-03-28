@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    This HTML document serves as the landing page for the Tigrinya Alphabet Learning web app.
+    It includes the necessary metadata, links to external stylesheets for styling, and provides
+    information about the Tigrinya language and script.
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigrinya Alphabet Landing Page</title>
+    <!-- Links to external CSS files for styling -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/index.css') }}?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/landing_page.css') }}?{{ cache_id }}">
+</head>
+<body>
+    <header>
+        <!-- Header section with the title of the web app and a sign-up button -->
+        <h1 class="title">Tigrinya Alphabet</h1>
+    </header>
+    <main>
+        <!-- Main content section with a description of the Tigrinya language and script -->
+        <div class="description">
+            <!-- Paragraphs providing information about Tigrinya -->
+            <p>Tigrinya, a Semitic (Afro-Asiatic) language, is part of a linguistic lineage that includes modern languages such as Tigrinya, Tigre, Amharic, Hebrew, Arabic, Maltese, and Aramaic, all stemming from the Biblical "Shem." Spoken by approximately 10 million people worldwide, Tigrinya holds significant cultural importance in Tigray, the northern region of Ethiopia, and parts of Eritea.</p>
+            <p>Written in the Ge'ez script, originally crafted for the now-extinct Ge'ez language, Tigrinya employs a system of 32 characters. Although the Ge'ez script may seem daunting at first glance, mastering it to read Tigrinya proves relatively straightforward. Pronunciation follows a simple and intuitive rule: "<i>You write as you read it, and you read as you write it.</i>" With its left-to-right orientation, akin to English, Tigrinya offers an accessible entry point for learners eager to explore its linguistic richness.</p>
+            <!-- Image displaying Tigrinya characters -->
+            <img src="{{ url_for('static', filename='images/tigrinya_characters.jpg') }}?{{ cache_id }}" alt="Tigrinya Characters" class="characters-image">
+        </div>
+        <!-- Container for the "Continue" button to navigate to the index page -->
+        <div class="buttons-container">
+            <!-- Button to continue to the index page -->
+            <a href="{{ url_for('index') }}"><button class="center-btn" id="continue">Continue</button></a>
+        </div>
+    </main>
+</body>
+</html>
