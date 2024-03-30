@@ -14,15 +14,15 @@ import random
 
 # List of Tigrinya characters
 TIGRINYA_CHARACTERS = ['ሀ','ለ','ሐ','መ','ረ','ሰ','ሸ','ቀ',
-                    'ቐ','በ','ተ','ቸ','ነ','ኘ','አ','ከ',
-                    'ኸ','ወ','ዐ','ዘ','ዠ','የ','ደ','ጀ',
-                    'ገ','ጠ','ጨ','ጰ','ፀ','ፈ','ፐ','ቨ']
+                       'ቐ','በ','ተ','ቸ','ነ','ኘ','አ','ከ',
+                       'ኸ','ወ','ዐ','ዘ','ዠ','የ','ደ','ጀ',
+                       'ገ','ጠ','ጨ','ጰ','ፀ','ፈ','ፐ','ቨ']
 
 # List of English representations for the Tigrinya characters
 ENG_REPRESENTATION = ['He', 'Le', 'Hhe', 'Me', 'Re', 'Se', 'She', 'Qe',
-                    'Qqe', 'Be', 'Te', 'Che', 'Ne', 'Gne', 'Eh', 'Ke',
-                    'Khe', 'We', 'EEh', 'Ze', 'Zhe', 'Ye', 'De', 'Je',
-                    'Ge', 'Tte', 'Cche', 'Ppe', 'Tse', 'Fe', 'Pe', 'Ve']
+                      'Qqe', 'Be', 'Te', 'Che', 'Ne', 'Gne', 'Eh', 'Ke',
+                      'Khe', 'We', 'EEh', 'Ze', 'Zhe', 'Ye', 'De', 'Je',
+                      'Ge', 'Tte', 'Cche', 'Ppe', 'Tse', 'Fe', 'Pe', 'Ve']
 
 # List of variations for each Tigrinya character
 CH_VARIATION = [['ሀ','ሁ','ሂ','ሃ','ሄ','ህ','ሆ'], ['ለ','ሉ','ሊ','ላ','ሌ','ል','ሎ'],
