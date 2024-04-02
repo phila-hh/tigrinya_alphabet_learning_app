@@ -6,18 +6,14 @@ This module implements a Flask application to handle API routes for accessing Ti
 Routes:
 1. /api/characters: Retrieves all Tigrinya characters and their English representations.
 2. /api/character_variations: Retrieves all variations of all Tigrinya characters.
-3. /api/character_variations/<character>: Retrieves all variations of a specific Tigrinya character.
-4. /api/audio_pronunciations: Retrieves links to all audio pronunciations of Tigrinya characters.
-5. /api/audio/<filename>: Serves an audio file for download or playback.
-6. /api/character/<character>: Retrieves the English representation of a specific Tigrinya character.
-7. /api/character/<character>/pronunciation: Retrieves the audio pronunciation of a specific Tigrinya character.
+3. /api/character_variations/<character>: Retrieves all variations of a specific Tigriny character.
+4. /api/character/<character>: Retrieves the English representation of a specific Tigrinya character.
+5. /api/character/<character>/pronunciation: Retrieves the audio pronunciation of a specific Tigrinya character.
 
 Functions:
 - get_characters: Handles the route to retrieve all Tigrinya characters and their English representations.
 - get_character_variations: Handles the route to retrieve all variations of all Tigrinya characters.
 - get_character_variations_by_character: Handles the route to retrieve all variations of a specific Tigrinya character.
-- get_audio_pronunciations: Handles the route to retrieve links to all audio pronunciations of Tigrinya characters.
-- get_audio: Serves the audio file for download or playback.
 - get_character_info: Handles the route to retrieve the English representation of a specific Tigrinya character.
 - get_character_pronunciation: Handles the route to retrieve the audio pronunciation of a specific Tigrinya character.
 
@@ -29,6 +25,7 @@ from flask import Flask, jsonify, request, send_file, send_from_directory, url_f
 import api_methods
 
 app = Flask(__name__)
+
 
 # Route to get all characters
 @app.route('/api/characters', methods=['GET'])
@@ -44,6 +41,7 @@ def get_characters():
     character_data = [{'character': char, 'english_representation': eng} for char, eng in zip(characters, english_representations)]
     return jsonify(character_data)
 
+
 # Route to get all characters variations
 @app.route('/api/character_variations', methods=['GET'])
 def get_character_variations():
@@ -55,6 +53,7 @@ def get_character_variations():
     """
     character_variations = api_methods.get_character_variations()
     return jsonify(character_variations)
+
 
 # Route to get a specific character's variations
 @app.route('/api/character_variations/<character>', methods=['GET'])
@@ -71,36 +70,6 @@ def get_character_variations_by_character(character):
     else:
         return jsonify({'error': 'Character not found'}), 404
 
-# Route to get all audio pronunciations of characters
-@app.route('/api/audio_pronunciations', methods=['GET'])
-def get_audio_pronunciations():
-    """
-    Retrieves all audio pronunciations of Tigrinya characters.
-    
-    Returns:
-        JSON: A JSON object containing links to all audio pronunciations of Tigrinya characters.
-    """
-    audio_pronunciations = api_methods.get_audio_pronunciations()
-
-    audio_urls = {}
-    for char, file_path in audio_pronunciations.items():
-        audio_urls[char] = url_for('get_audio', filename=file_path, _external=True)
-    
-    return jsonify(audio_urls)
-
-# Route to serve audio files
-@app.route('/api/audio/<path:filename>', methods=['GET'])
-def get_audio(filename):
-    """
-    Serves an audio file for download or playback.
-    
-    Args:
-        filename (str): The name of the audio file.
-        
-    Returns:
-        Audio file: The requested audio file.
-    """
-    return send_from_directory(app.config['AUDIO_FOLDER'], filename)
 
 # Route to get a specific character and its English representation
 @app.route('/api/character/<character>', methods=['GET'])
@@ -120,6 +89,7 @@ def get_character_info(character):
     else:
         return jsonify({'error': 'Character not found'}), 404
 
+
 # Route to get a specific character and its audio pronunciation
 @app.route('/api/character/<character>/pronunciation', methods=['GET'])
 def get_character_pronunciation(character):
@@ -137,6 +107,7 @@ def get_character_pronunciation(character):
         return send_file(audio_file_path, mimetype='audio/wav')
     else:
         return jsonify({'error': 'Character not found'}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)

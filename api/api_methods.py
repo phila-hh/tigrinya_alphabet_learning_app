@@ -84,6 +84,7 @@ def get_character_variations():
         variations[char] = get_variations(char)
     return variations
 
+
 def get_variations(character):
     """
     Retrieves all variations of a specific Tigrinya character.
@@ -95,6 +96,7 @@ def get_variations(character):
         list: A list containing all variations of the Tigrinya character.
     """
     return CH_VARIATION[TIGRINYA_CHARACTERS.index(character)]
+
 
 def get_english_representation(character):
     """
@@ -120,6 +122,7 @@ def get_english_representation(character):
     else:
         return None
 
+
 def get_audio_pronunciations():
     """
     Retrieves all audio pronunciations of Tigrinya characters.
@@ -132,6 +135,7 @@ def get_audio_pronunciations():
         for char in char_list:
             AUDIO_PRONUNCIATIONS[char] = get_audio_pronunciation(char)
     return AUDIO_PRONUNCIATIONS
+
 
 def get_audio_pronunciation(character):
     """
@@ -146,4 +150,3 @@ def get_audio_pronunciation(character):
     filename = get_english_representation(character)
     audio_file_path = os.path.join(os.path.dirname(__file__), '../', 'static', 'sounds', filename + '.wav')
     return audio_file_path
-    #return os.path.join('static', 'sounds', filename + '.wav')

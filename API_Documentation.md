@@ -71,22 +71,7 @@ http://localhost:5000/api
   }
   ```
 
-### 4. Get All Audio Pronunciations
-
-- **URL:** `/audio_pronunciations`
-- **Method:** `GET`
-- **Description:** Retrieves links to all audio pronunciations of Tigrinya characters.
-- **Response Format:** JSON
-- **Response Example:**
-  ```json
-  {
-      "ሀ": "http://localhost:5000/api/audio/ha.wav",
-      "ለ": "http://localhost:5000/api/audio/le.wav",
-      ...
-  }
-  ```
-
-### 5. Get Character Information
+### 4. Get Character Information
 
 - **URL:** `/character/<character>`
 - **Method:** `GET`
@@ -102,7 +87,7 @@ http://localhost:5000/api
   }
   ```
 
-### 6. Get Character Pronunciation
+### 5. Get Character Pronunciation
 
 - **URL:** `/character/<character>/pronunciation`
 - **Method:** `GET`
